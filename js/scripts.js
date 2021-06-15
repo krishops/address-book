@@ -30,12 +30,15 @@ AddressBook.prototype.deleteContact = function(id)  {
 };
 
 //Business Logic for Contacts ----
-function Contact(firstName, lastName, phoneNumber, emailAddress, address) {
+function Contact(firstName, lastName, phoneNumber, emailAddress, homeAddress, workAddress) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
   this.emailAddress = emailAddress;
-  this.addresses = {}
+  this.addresses = {
+    home: homeAddress,
+    work: workAddress,
+  }
   // this.address = address;
 }
 
@@ -43,15 +46,23 @@ function Contact(firstName, lastName, phoneNumber, emailAddress, address) {
 //   return this.firstName + " " + this.lastName;
 // };
 
-Contact.prototype.addAddress = function()  {
-  this.addresses[address.homeAddress] =address
-}
+// Contact.prototype.addAddress = function(address)  {
+//   address.id = this.addressId();
+//   this.addresses[address.id] = address;
+// }
 
-//Business logic for Addresses
-function Addresses(homeAddress, workAddress)  {
-  this.homeAddress = homeAddress;
-  this.workAddress = workAddress;
-}
+// Contact.prototype.addressId = function() {
+//   this.addressId += 1;
+//   return this.addressId;
+// };
+
+// //Business logic for Addresses
+// function Addresses(homeAddress, workAddress)  {
+//   this.homeAddress = homeAddress;
+//   this.workAddress = workAddress;
+// }
+
+
 
 //User Interface Logic ----
 let addressBook = new AddressBook();
@@ -73,7 +84,8 @@ function displayContactDetails(addressBookToDisplay)  {
     $(".last-name").html(contact.lastName);
     $(".phone-number").html(contact.phoneNumber);
     $(".email-address").html(contact.emailAddress);
-    $(".address").html(contact.address);
+    $(".home-address").html(contact.addresses["home"]);
+    $(".work-address").html(contact.addresses["work"]);
     let buttons = $("#buttons");
     buttons.empty();
     buttons.append("<button class ='deleteButton' id=" + + contact.id + ">Delete</button>");
@@ -98,13 +110,16 @@ $(document).ready(function()  {
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     const inputtedEmailAddress = $("input#new-email-address").val();
-    const inputtedAddress = $("input#new-address").val();
+    const inputtedHomeAddress = $("input#new-home-address").val();
+    const inputtedWorkAddress = $("input#new-work-address").val();
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
     $("input#new-email-address").val("");
     $("input#new-address").val("");
-    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedAddress);
+    $("input#home-address").val("");
+    $("input#work-address").val("");
+    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedHomeAddress, inputtedWorkAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
   });
