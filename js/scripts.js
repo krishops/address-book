@@ -84,8 +84,8 @@ function displayContactDetails(addressBookToDisplay)  {
     $(".last-name").html(contact.lastName);
     $(".phone-number").html(contact.phoneNumber);
     $(".email-address").html(contact.emailAddress);
-    $(".home-address").html(contact.addresses["home"]);
-    $(".work-address").html(contact.addresses["work"]);
+    $(".home-address").html(contact.addresses.home);
+    $(".work-address").html(contact.addresses.work);
     let buttons = $("#buttons");
     buttons.empty();
     buttons.append("<button class ='deleteButton' id=" + + contact.id + ">Delete</button>");
@@ -117,8 +117,8 @@ $(document).ready(function()  {
     $("input#new-phone-number").val("");
     $("input#new-email-address").val("");
     $("input#new-address").val("");
-    $("input#home-address").val("");
-    $("input#work-address").val("");
+    $("input#new-home-address").val("");
+    $("input#new-work-address").val("");
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedHomeAddress, inputtedWorkAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
