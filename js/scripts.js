@@ -118,7 +118,7 @@ $(document).ready(function()  {
     $("input#new-email-address").val("");
     $("input#new-address").val("");
     $("input#new-home-address").val("");
-    $("input#new-work-address").val("");
+    $("input#new-;work-address").val("");
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress, inputtedHomeAddress, inputtedWorkAddress);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
